@@ -1,7 +1,13 @@
+<style>
+form {
+  font-family: "Comic Sans MS";
+}
+</style>
+
 Click <a href="/H">here</a> to turn the LED on pin 5 on.<br>Click <a href="/L">here</a> to turn the LED on pin 5 off.<br>
 <form target="_self" method="GET">
   R: <input type="text" name="rval">
-  <br>G: <input type="text" name="gval">
+  <br><span style='color: Green;'>G: <input type="text" name="gval"></span>
   <br>B: <input type="text" name="bval">
   <br><input type="submit" value="Set Color">
 </form>
