@@ -1,5 +1,3 @@
-#include <dummy.h>
-
 //
 // Copyright 2015 Google Inc.
 //
@@ -19,24 +17,11 @@
 // FirebaseStream_ESP32 is a sample that stream bitcoin price from a
 // public Firebase and optionally display them on a OLED i2c screen.
 
-#include <Arduino.h>
+//#include <IOXhop_FirebaseESP32.h>
 #include <WiFi.h>
-#include <FirebaseESP32.h>
-#include <ArduinoJson.h>
-#include <HTTPClient.h>
-#include "Stream.h"
 
 // Set these to run example.
 #define WIFI_SSID "Device-Northwestern"
-
-void streamCallback(streamResult event){
-  String eventType = event.eventType();
-  eventType.toLowerCase();
-  if (eventType == "put" && event.path() == "/Test") 
-  {
-    Serial.println(event.getFloat());
-  }
-}
 
 void setup() {
   Serial.begin(9600);
@@ -52,8 +37,20 @@ void setup() {
   Serial.print("connected: ");
   Serial.println(WiFi.localIP());
   
-  Firebase.begin("dooropener-699b5.firebaseio.com/");
-  Firebase.stream("/Test", streamCallback);  
+  Firebase.begin("dooropener-699b5.firebaseio.com");
+  Firebase.stream("/Test", [](FirebaseStream stream) {
+    String eventType = stream.getEvent();
+    eventType.toLowerCase();
+     
+    Serial.print("event: ");
+    Serial.println(eventType);
+    if (eventType == "put") {
+      Serial.print("data: ");
+      Serial.println(stream.getDataString());
+      String path = stream.getPath();
+      String data = stream.getDataString();
+    }
+  });  
 }
 
 
