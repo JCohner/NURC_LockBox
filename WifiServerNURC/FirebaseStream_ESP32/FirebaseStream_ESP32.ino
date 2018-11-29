@@ -17,7 +17,7 @@
 // FirebaseStream_ESP32 is a sample that stream bitcoin price from a
 // public Firebase and optionally display them on a OLED i2c screen.
 
-//#include <IOXhop_FirebaseESP32.h>
+#include <IOXhop_FirebaseESP32.h>
 #include <WiFi.h>
 
 // Set these to run example.
