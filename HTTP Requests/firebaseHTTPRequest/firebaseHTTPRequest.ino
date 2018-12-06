@@ -29,7 +29,7 @@ void loop() {
     }
 
     HTTPClient http;
-    http.begin("https://dooropener-699b5.firebaseio.com/Test.json")
+    http.begin("https://dooropener-699b5.firebaseio.com/Test.json");
     int httpCode = http.GET();                                   
  
     if (httpCode > 0) { //Check for the returning code
@@ -44,7 +44,6 @@ void loop() {
     }
 
     http.end();
-    }
 
     Serial.println();
     Serial.println("closing connection");
