@@ -1,0 +1,4 @@
+$ cat .gitignore
+.firebase/**
+functions/**
+public/**
